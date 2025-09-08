@@ -1,7 +1,7 @@
-from selene import browser, be, have
+from selene import browser, be, have, by
 
 def test_failed_search (set_browser):
     browser.config.timeout = 8
     browser.element('[id="searchbox_input"]').should(be.blank).type('Xx9abT72kLmQ').press_enter()
-    browser.all('h2 a').should(have.size(0))
-    print("Нет результатов поиска")
+    browser.element(by.partial_text('ничего не найдено')).should(be.visible)
+    #browser.element('html').should(have.text('ничего не найдено'))
